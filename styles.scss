@@ -1,0 +1,137 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400);
+
+$main: #212121;
+$accent: #bdbdbd;
+
+body {
+  background: $main;
+}
+
+@keyframes openTopLine {
+  0% {
+    width: 0;
+    transform: translateY(5em);
+  }
+  50% {
+    width: 27em;
+    transform: translateY(5em);
+  }
+  100% {
+    width: 27em;
+    transform: translateY(0);
+  }
+}
+
+@keyframes openBottomLine {
+  0% {
+    width: 0;
+    transform: translateY(-5em);
+  }
+  50% {
+    width: 27em;
+    transform: translateY(-5em);
+  }
+  100% {
+    width: 27em;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideContent {
+  0%, 30% {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.logo {
+  font-size: 1.1em;
+  font-family: "Roboto Slab";
+  text-align: center;
+  color: $accent;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+
+  .line {
+    height: 1px;
+    background: $accent;
+    display: inline-block;
+    width: 27em;
+    
+    &.topLine {
+      animation: openTopLine 1.5s;
+    }
+    
+    &.bottomLine {
+      animation: openBottomLine 1.5s;
+    }
+  }
+
+  .content {
+    animation: slideContent 1s;
+    animation-fill-mode: backwards;
+    animation-delay: 1.25s;
+
+    .vintage {
+      font-weight: 400;
+      font-size: 2em;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 0px $main, 2px 2px 0px $accent;
+      letter-spacing: 4px;
+    }
+
+    .since {
+      font-weight: 100;
+      margin: 0.25em auto 0.5em;
+    }
+
+    .desc {
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-style: italic;
+    }
+
+    .skillz {
+      font-size: 1.2em;
+      margin-top: 0.25em;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .links {
+      a {
+        display: inline-block;
+        color: $accent;
+        font-size: 1.25em;
+        margin: 0.25em 0.2em 0;
+        transition: color 0.1s;
+        cursor: pointer;
+        transition: color 0.15s;
+        animation: slideContent 1s;
+        animation-fill-mode: backwards;
+
+        $i: 1;
+        $delay: 2;
+        @while $i < 6 {
+          &:nth-of-type(#{$i}n) {
+            animation-delay: #{$delay}s;
+            $i: $i + 1;
+            $delay: $delay + 0.25;
+          }
+        }
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+  }
+}
